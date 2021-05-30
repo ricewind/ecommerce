@@ -1,16 +1,16 @@
-package com.example.ecommerce.ui.home;
+package com.example.ecommerce.ui.ofertas;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class OfertasViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public OfertasViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("U-Commerce");
+        mText.setValue("Ofertas");
     }
 
     public LiveData<String> getText() {

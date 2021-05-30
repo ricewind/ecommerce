@@ -1,4 +1,4 @@
-package com.example.ecommerce.ui.slideshow;
+package com.example.ecommerce.ui.xbox;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.ecommerce.R;
-import com.example.ecommerce.databinding.FragmentSlideshowBinding;
+import com.example.ecommerce.databinding.FragmentXboxBinding;
 
-public class SlideshowFragment extends Fragment {
+public class XboxFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
-    private FragmentSlideshowBinding binding;
+    private XboxViewModel xboxViewModel;
+    private FragmentXboxBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+        xboxViewModel =
+                new ViewModelProvider(this).get(XboxViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentXboxBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        xboxViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

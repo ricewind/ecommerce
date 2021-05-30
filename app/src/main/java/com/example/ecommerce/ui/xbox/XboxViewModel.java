@@ -1,16 +1,16 @@
-package com.example.ecommerce.ui.gallery;
+package com.example.ecommerce.ui.xbox;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class XboxViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public XboxViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("XBOX");
     }
 
     public LiveData<String> getText() {
