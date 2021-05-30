@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment {
         mDynamicListAdapter.setFourthList(fourthList);
 
         try {
-            mLayoutManager = new LinearLayoutManager(getContext());
+            mLayoutManager = new LinearLayoutManager(root.getContext());
             mRecyclerView.setLayoutManager(mLayoutManager);
             mRecyclerView.setAdapter(mDynamicListAdapter);
         }catch (NullPointerException e){

@@ -1,5 +1,7 @@
 package com.example.ecommerce;
 
+import android.os.Debug;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class DynamicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    String TAG = "Polla";
 
     private static final int FIRST_LIST_ITEM_VIEW = 1;
     private static final int FIRST_LIST_HEADER_VIEW = 2;
@@ -85,15 +88,10 @@ public class DynamicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
 
         public void bindViewFourthList(int pos) {
+            pos = pos - thirdList.size() - 1;
 
-            if (thirdList == null) pos = pos - 1;
-            else {
-                if (thirdList.size() == 0) pos = pos - 1;
-                else pos = pos - thirdList.size() - 2;
-            }
-
-            final String description = fourthList.get(pos).getDescription();
-            final String title = fourthList.get(pos).getTitle();
+            final String description = fourthList.get(0).getDescription();
+            final String title = fourthList.get(0).getTitle();
 
             mTextDescription4.setText(description);
             mListItemTitle4.setText(title);
@@ -102,14 +100,11 @@ public class DynamicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         public void bindViewThirdList(int pos) {
 
-            if (secondList == null) pos = pos - 1;
-            else {
-                if (secondList.size() == 0) pos = pos - 1;
-                else pos = pos - secondList.size() - 2;
-            }
+            pos = pos - secondList.size() - 1;
 
-            final String description = thirdList.get(pos).getDescription();
-            final String title = thirdList.get(pos).getTitle();
+            final String description = thirdList.get(0).getDescription();
+            final String title = thirdList.get(0).getTitle();
+
 
             mTextDescription3.setText(description);
             mListItemTitle3.setText(title);
@@ -117,37 +112,29 @@ public class DynamicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         public void bindViewSecondList(int pos) {
 
-            if (firstList == null) pos = pos - 1;
-            else {
-                if (firstList.size() == 0) pos = pos - 1;
-                else pos = pos - firstList.size() - 2;
-            }
+            pos = pos - firstList.size() - 1;
 
-            final String description = secondList.get(pos).getDescription();
-            final String title = secondList.get(pos).getTitle();
+            final String description = secondList.get(0).getDescription();
+            final String title = secondList.get(0).getTitle();
+
 
             mTextDescription2.setText(description);
             mListItemTitle2.setText(title);
         }
 
         public void bindViewFirstList(int pos) {
+            Log.d(TAG, "" + firstList);
 
             // Decrease pos by 1 as there is a header view now.
             pos = pos - 1;
 
-            final String description = firstList.get(pos).getDescription();
-            final String title = firstList.get(pos).getTitle();
+            final String description = firstList.get(0).getDescription();
+            final String title = firstList.get(0).getTitle();
 
             mTextDescription1.setText(description);
             mListItemTitle1.setText(title);
         }
 
-    }
-
-    public class FooterViewHolder extends ViewHolder {
-        public FooterViewHolder(View itemView) {
-            super(itemView);
-        }
     }
 
     private class FirstListHeaderViewHolder extends ViewHolder {
@@ -215,7 +202,6 @@ public class DynamicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_second_list_header, parent, false);
             return new SecondListHeaderViewHolder(v);
 
-
         } else if (viewType == SECOND_LIST_ITEM_VIEW){
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_second_list, parent, false);
             return new SecondListItemViewHolder(v);
@@ -236,12 +222,12 @@ public class DynamicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
              return  new FourthListHeaderViewHolder(v);
 
          }
-         else {
-            //FOURTH_LIST_ITEM_VIEW
+         else if(viewType == FOURTH_LIST_ITEM_VIEW){
              v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_fourth_list, parent, false);
              return new FourthListItemViewHolder(v);
-
          }
+
+         return null;
 
     }
 
@@ -250,30 +236,45 @@ public class DynamicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         try {
             if (holder instanceof SecondListItemViewHolder) {
+                Log.d(TAG, "en second");
+
                 SecondListItemViewHolder vh = (SecondListItemViewHolder) holder;
                 vh.bindViewSecondList(position);
 
             } else if (holder instanceof FirstListHeaderViewHolder) {
+                Log.d(TAG, "en first header");
+
                 FirstListHeaderViewHolder vh = (FirstListHeaderViewHolder) holder;
 
             } else if (holder instanceof FirstListItemViewHolder) {
+                Log.d(TAG, "en first");
+
                 FirstListItemViewHolder vh = (FirstListItemViewHolder) holder;
                 vh.bindViewFirstList(position);
 
             } else if (holder instanceof SecondListHeaderViewHolder) {
+                Log.d(TAG, "en second header");
+
                 SecondListHeaderViewHolder vh = (SecondListHeaderViewHolder) holder;
 
-            } else if (holder instanceof ThirdListHeaderViewHolder) {
+            }else if (holder instanceof ThirdListHeaderViewHolder) {
+                Log.d(TAG, "en third header");
+
                 ThirdListHeaderViewHolder vh = (ThirdListHeaderViewHolder) holder;
 
             }else if (holder instanceof ThirdListItemViewHolder) {
+                Log.d(TAG, "en third");
+
                 ThirdListItemViewHolder vh = (ThirdListItemViewHolder) holder;
                 vh.bindViewThirdList(position);
 
             }else if (holder instanceof FourthListHeaderViewHolder) {
+                Log.d(TAG, "en fourth header");
                 FourthListHeaderViewHolder vh = (FourthListHeaderViewHolder) holder;
 
             }else if (holder instanceof FourthListItemViewHolder) {
+                Log.d(TAG, "en fourth");
+
                 FourthListItemViewHolder vh = (FourthListItemViewHolder) holder;
                 vh.bindViewFourthList(position);
             }
