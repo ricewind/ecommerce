@@ -142,7 +142,13 @@
                 android:id="@+id/boton8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Filtro oferta ordenado" />
+                android:text="Ofertas" />
+
+            <Button
+                android:id="@+id/boton9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Novedades" />
 
             <LinearLayout
                 android:id="@+id/gamesLayout"
