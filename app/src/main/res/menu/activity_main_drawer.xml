@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_novedades"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_novedades" />
+        <item
+            android:id="@+id/nav_ofertas"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_ofertas" />
+        <item
+            android:id="@+id/nav_ps4"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_ps4" />
+        <item
+            android:id="@+id/nav_xbox"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_xbox" />
+        <item
+            android:id="@+id/nav_location"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_location" />
+        <item
+            android:id="@+id/nav_carro"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_carro" />
+    </group>
+</menu>
