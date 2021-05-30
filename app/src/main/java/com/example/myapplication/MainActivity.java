@@ -8,6 +8,7 @@ import android.util.Log;
 import android.content.ContentValues;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -181,15 +182,23 @@ public class MainActivity extends AppCompatActivity {
 
                                                 TextView textTitle = new TextView(v.getContext());
                                                 textTitle.setText("" + games.get(i).ID + " - " + games.get(i).TITLE);
+                                                textTitle.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
                                                 m_ll.addView(textTitle);
 
                                                 TextView textDesc = new TextView(v.getContext());
                                                 textDesc.setText("" + games.get(i).DESCRIPTION);
+                                                textDesc.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
                                                 m_ll.addView(textDesc);
 
                                                 TextView textPrice = new TextView(v.getContext());
                                                 textPrice.setText("" + games.get(i).PRICE + "€");
+                                                textPrice.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
                                                 m_ll.addView(textPrice);
+
+                                                TextView textDate = new TextView(v.getContext());
+                                                textDate.setText("" + games.get(i).DATE);
+                                                textDate.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                m_ll.addView(textDate);
 
                                                 /*
                                                 TextView text = new TextView(v.getContext());
