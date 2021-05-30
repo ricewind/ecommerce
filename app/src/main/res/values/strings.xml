@@ -13,7 +13,7 @@
     <string name="menu_ps4">PS4</string>
     <string name="menu_xbox">Xbox</string>
     <string name="menu_location">¿Dónde estamos?</string>
-    <string name="menu_Contacto">Contacto</string>
+    <string name="menu_contacto">Contacto</string>
     <string name="menu_carro">Carro de la compra</string>
 
 </resources>

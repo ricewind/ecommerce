@@ -29,6 +29,10 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_location" />
         <item
+            android:id="@+id/nav_contacto"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_contacto" />
+        <item
             android:id="@+id/nav_carro"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_carro" />
