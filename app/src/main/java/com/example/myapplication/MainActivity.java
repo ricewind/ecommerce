@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
@@ -45,9 +46,13 @@ public class MainActivity extends AppCompatActivity {
                 Button boton3 = findViewById(R.id.boton3);
                 Button boton4 = findViewById(R.id.boton4);
                 Button boton5 = findViewById(R.id.boton5);
+                Button boton6 = findViewById(R.id.boton6);
+                Button boton7 = findViewById(R.id.boton7);
+                Button boton8 = findViewById(R.id.boton8);
 
-                boton1.setOnClickListener(new View.OnClickListener(){
-                        public void onClick (View v){
+
+                boton1.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
                                 if (ID.getText().toString() != "" && title.getText().toString() != "" && description.getText().toString() != "" && price.getText().toString() != "" && image.getText().toString() != "" && date.getText().toString() != "" && sale.getText().toString() != "" && sale_price.getText().toString() != "" && xbox.getText().toString() != "" && ps.getText().toString() != "") {
                                         GamesDB admin = new GamesDB(v.getContext(), version);
                                         SQLiteDatabase bd = admin.getWritableDatabase();
@@ -81,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                 });
 
-                boton2.setOnClickListener(new View.OnClickListener(){
-                        public void onClick (View v){
+                boton2.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
                                 if (ID.getText().toString() != "") {
                                         GamesDB admin = new GamesDB(v.getContext(), version);
                                         SQLiteDatabase bd = admin.getReadableDatabase();
@@ -101,13 +106,14 @@ public class MainActivity extends AppCompatActivity {
                                         } else
                                                 Toast.makeText(v.getContext(), "No existe un juego con dicha ID", Toast.LENGTH_SHORT).show();
                                         bd.close();
-                                } else Toast.makeText(v.getContext(), "Introduzca una ID", Toast.LENGTH_SHORT).show();
+                                } else
+                                        Toast.makeText(v.getContext(), "Introduzca una ID", Toast.LENGTH_SHORT).show();
                         }
                 });
 
 
-                boton3.setOnClickListener(new View.OnClickListener(){
-                        public void onClick (View v){
+                boton3.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
                                 if (ID.getText().toString() != "") {
                                         GamesDB admin = new GamesDB(v.getContext(), version);
                                         SQLiteDatabase bd = admin.getReadableDatabase();
@@ -132,12 +138,12 @@ public class MainActivity extends AppCompatActivity {
                 });
 
 
-                boton4.setOnClickListener(new View.OnClickListener(){
-                        public void onClick (View v){
+                boton4.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
                                 if (ID.getText().toString() != "") {
                                         GamesDB admin = new GamesDB(v.getContext(), version);
                                         SQLiteDatabase bd = admin.getWritableDatabase();
-                                        int cant = bd.delete("Game", "ID="+ID.getText().toString(), null);
+                                        int cant = bd.delete("Game", "ID=" + ID.getText().toString(), null);
                                         bd.close();
                                         ID.setText("");
                                         title.setText("");
@@ -153,18 +159,18 @@ public class MainActivity extends AppCompatActivity {
                                                 Toast.makeText(v.getContext(), "Se borró el juego con dicha ID", Toast.LENGTH_SHORT).show();
                                         else
                                                 Toast.makeText(v.getContext(), "No existe un juego con dicha ID", Toast.LENGTH_SHORT).show();
-                                } else Toast.makeText(v.getContext(), "Introduzca una ID", Toast.LENGTH_SHORT).show();
+                                } else
+                                        Toast.makeText(v.getContext(), "Introduzca una ID", Toast.LENGTH_SHORT).show();
                         }
                 });
 
 
-                boton5.setOnClickListener(new View.OnClickListener(){
-                        public void onClick (View v){
+                boton5.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
                                 GamesDB admin = new GamesDB(v.getContext(), version);
                                 SQLiteDatabase bd = admin.getReadableDatabase();
                                 Cursor fila = bd.rawQuery("select * from Game", null);
                                 if (fila.moveToFirst()) {
-                                        Log.d(TAG, "hola " + fila);
                                         List<Game> games = new ArrayList<Game>();
                                         do {
                                                 games.add(new Game(fila.getInt(0), fila.getString(1), fila.getString(2), fila.getFloat(3), fila.getString(4), fila.getString(5), fila.getInt(6), fila.getFloat(7), fila.getInt(8), fila.getInt(9)));
@@ -172,8 +178,6 @@ public class MainActivity extends AppCompatActivity {
                                         LinearLayout m_ll = findViewById(R.id.gamesLayout);
                                         m_ll.removeAllViews();
                                         for (int i = 0; i < games.size(); i++) {
-                                                Log.d(TAG, "ID-> " + games.get(i).ID + ", TITLE-> " + games.get(i).TITLE + ", DESCRIPTION-> " + games.get(i).DESCRIPTION + ", PRICE-> " + games.get(i).PRICE + ", IMAGE-> " + games.get(i).IMAGE + ", DATE-> " + games.get(i).DATE + ", SALE-> " + games.get(i).SALE + ", SALE_PRICE-> " + games.get(i).SALE_PRICE + ", XBOX-> " + games.get(i).XBOX + ", PS-> " + games.get(i).PS);
-
                                                 ImageView image = new ImageView(v.getContext());
                                                 int draw = getResources().getIdentifier(games.get(i).IMAGE, "drawable", getPackageName());
                                                 image.setImageResource(draw);
@@ -190,10 +194,25 @@ public class MainActivity extends AppCompatActivity {
                                                 textDesc.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
                                                 m_ll.addView(textDesc);
 
-                                                TextView textPrice = new TextView(v.getContext());
-                                                textPrice.setText("" + games.get(i).PRICE + "€");
-                                                textPrice.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-                                                m_ll.addView(textPrice);
+                                                if (games.get(i).SALE == 1){
+                                                        TextView textPrice = new TextView(v.getContext());
+                                                        textPrice.setText("" + games.get(i).PRICE + "€");
+                                                        textPrice.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                        m_ll.addView(textPrice);
+
+                                                        TextView textPriceSale = new TextView(v.getContext());
+                                                        textPriceSale.setText("" + games.get(i).SALE_PRICE + "€");
+                                                        textPriceSale.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                        textPriceSale.setTextColor(Color.RED);
+                                                        m_ll.addView(textPriceSale);
+                                                }
+                                                else{
+                                                        TextView textPrice = new TextView(v.getContext());
+                                                        textPrice.setText("" + games.get(i).PRICE + "€");
+                                                        textPrice.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                        m_ll.addView(textPrice);
+                                                        Log.d(TAG, "" + games.get(i).SALE + " " + games.get(i).SALE_PRICE);
+                                                }
 
                                                 TextView textDate = new TextView(v.getContext());
                                                 textDate.setText("" + games.get(i).DATE);
@@ -211,16 +230,212 @@ public class MainActivity extends AppCompatActivity {
                                 bd.close();
                         }
                 });
+                boton6.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                                GamesDB admin = new GamesDB(v.getContext(), version);
+                                SQLiteDatabase bd = admin.getReadableDatabase();
+                                Cursor fila = bd.rawQuery("select * from Game where XBOX = 1", null);
+                                if (fila.moveToFirst()) {
+                                        List<Game> games = new ArrayList<Game>();
+                                        do {
+                                                games.add(new Game(fila.getInt(0), fila.getString(1), fila.getString(2), fila.getFloat(3), fila.getString(4), fila.getString(5), fila.getInt(6), fila.getFloat(7), fila.getInt(8), fila.getInt(9)));
+                                        } while (fila.moveToNext());
+                                        LinearLayout m_ll = findViewById(R.id.gamesLayout);
+                                        m_ll.removeAllViews();
+                                        for (int i = 0; i < games.size(); i++) {
+                                                ImageView image = new ImageView(v.getContext());
+                                                int draw = getResources().getIdentifier(games.get(i).IMAGE, "drawable", getPackageName());
+                                                image.setImageResource(draw);
+                                                m_ll.addView(image);
+                                                image.getLayoutParams().height = 500;
 
+                                                TextView textTitle = new TextView(v.getContext());
+                                                textTitle.setText("" + games.get(i).ID + " - " + games.get(i).TITLE);
+                                                textTitle.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                m_ll.addView(textTitle);
+
+                                                TextView textDesc = new TextView(v.getContext());
+                                                textDesc.setText("" + games.get(i).DESCRIPTION);
+                                                textDesc.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                m_ll.addView(textDesc);
+
+                                                if (games.get(i).SALE == 1){
+                                                        TextView textPrice = new TextView(v.getContext());
+                                                        textPrice.setText("" + games.get(i).SALE_PRICE + "€");
+                                                        textPrice.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                        m_ll.addView(textPrice);
+
+                                                        TextView textPriceSale = new TextView(v.getContext());
+                                                        textPriceSale.setText("" + games.get(i).SALE_PRICE + "€");
+                                                        textPriceSale.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                        textPriceSale.setTextColor(Color.RED);
+                                                        m_ll.addView(textPriceSale);
+                                                }
+                                                else{
+                                                        TextView textPrice = new TextView(v.getContext());
+                                                        textPrice.setText("" + games.get(i).PRICE + "€");
+                                                        textPrice.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                        m_ll.addView(textPrice);
+                                                }
+
+                                                TextView textDate = new TextView(v.getContext());
+                                                textDate.setText("" + games.get(i).DATE);
+                                                textDate.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                m_ll.addView(textDate);
+
+                                                /*
+                                                TextView text = new TextView(v.getContext());
+                                                text.setText("");
+                                                m_ll.addView(text);
+                                                //games.get(i).IMAGE + ", DATE-> " + games.get(i).DATE + ", SALE-> " + games.get(i).SALE + ", SALE_PRICE-> " + games.get(i).SALE_PRICE + ", XBOX-> " + games.get(i).XBOX + ", PS-> " + games.get(i).PS
+                                                */
+                                        }
+                                }
+                                bd.close();
+                        }
+                });
+                boton7.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                                GamesDB admin = new GamesDB(v.getContext(), version);
+                                SQLiteDatabase bd = admin.getReadableDatabase();
+                                Cursor fila = bd.rawQuery("select * from Game where PS = 1", null);
+                                if (fila.moveToFirst()) {
+                                        List<Game> games = new ArrayList<Game>();
+                                        do {
+                                                games.add(new Game(fila.getInt(0), fila.getString(1), fila.getString(2), fila.getFloat(3), fila.getString(4), fila.getString(5), fila.getInt(6), fila.getFloat(7), fila.getInt(8), fila.getInt(9)));
+                                        } while (fila.moveToNext());
+                                        LinearLayout m_ll = findViewById(R.id.gamesLayout);
+                                        m_ll.removeAllViews();
+                                        for (int i = 0; i < games.size(); i++) {
+                                                ImageView image = new ImageView(v.getContext());
+                                                int draw = getResources().getIdentifier(games.get(i).IMAGE, "drawable", getPackageName());
+                                                image.setImageResource(draw);
+                                                m_ll.addView(image);
+                                                image.getLayoutParams().height = 500;
+
+                                                TextView textTitle = new TextView(v.getContext());
+                                                textTitle.setText("" + games.get(i).ID + " - " + games.get(i).TITLE);
+                                                textTitle.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                m_ll.addView(textTitle);
+
+                                                TextView textDesc = new TextView(v.getContext());
+                                                textDesc.setText("" + games.get(i).DESCRIPTION);
+                                                textDesc.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                m_ll.addView(textDesc);
+
+                                                if (games.get(i).SALE == 1){
+                                                        TextView textPrice = new TextView(v.getContext());
+                                                        textPrice.setText("" + games.get(i).SALE_PRICE + "€");
+                                                        textPrice.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                        m_ll.addView(textPrice);
+
+                                                        TextView textPriceSale = new TextView(v.getContext());
+                                                        textPriceSale.setText("" + games.get(i).SALE_PRICE + "€");
+                                                        textPriceSale.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                        textPriceSale.setTextColor(Color.RED);
+                                                        m_ll.addView(textPriceSale);
+                                                }
+                                                else{
+                                                        TextView textPrice = new TextView(v.getContext());
+                                                        textPrice.setText("" + games.get(i).PRICE + "€");
+                                                        textPrice.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                        m_ll.addView(textPrice);
+                                                }
+
+                                                TextView textDate = new TextView(v.getContext());
+                                                textDate.setText("" + games.get(i).DATE);
+                                                textDate.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                m_ll.addView(textDate);
+
+                                                /*
+                                                TextView text = new TextView(v.getContext());
+                                                text.setText("");
+                                                m_ll.addView(text);
+                                                //games.get(i).IMAGE + ", DATE-> " + games.get(i).DATE + ", SALE-> " + games.get(i).SALE + ", SALE_PRICE-> " + games.get(i).SALE_PRICE + ", XBOX-> " + games.get(i).XBOX + ", PS-> " + games.get(i).PS
+                                                */
+                                        }
+                                }
+                                bd.close();
+                        }
+                });
+                boton8.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                                GamesDB admin = new GamesDB(v.getContext(), version);
+                                SQLiteDatabase bd = admin.getReadableDatabase();
+                                Cursor fila = bd.rawQuery("select *, PRICE - SALE_PRICE as diff from Game where SALE = 1 order by diff desc", null);
+
+                                if (fila.moveToFirst()) {
+                                        Log.d(TAG, "assaas");
+
+                                        List<Game> games = new ArrayList<Game>();
+                                        do {
+                                                games.add(new Game(fila.getInt(0), fila.getString(1), fila.getString(2), fila.getFloat(3), fila.getString(4), fila.getString(5), fila.getInt(6), fila.getFloat(7), fila.getInt(8), fila.getInt(9)));
+                                        } while (fila.moveToNext());
+                                        LinearLayout m_ll = findViewById(R.id.gamesLayout);
+                                        m_ll.removeAllViews();
+                                        for (int i = 0; i < games.size(); i++) {
+                                                ImageView image = new ImageView(v.getContext());
+                                                int draw = getResources().getIdentifier(games.get(i).IMAGE, "drawable", getPackageName());
+                                                image.setImageResource(draw);
+                                                m_ll.addView(image);
+                                                image.getLayoutParams().height = 500;
+
+                                                TextView textTitle = new TextView(v.getContext());
+                                                textTitle.setText("" + games.get(i).ID + " - " + games.get(i).TITLE);
+                                                textTitle.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                m_ll.addView(textTitle);
+
+                                                TextView textDesc = new TextView(v.getContext());
+                                                textDesc.setText("" + games.get(i).DESCRIPTION);
+                                                textDesc.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                m_ll.addView(textDesc);
+
+                                                if (games.get(i).SALE == 1){
+                                                        TextView textPrice = new TextView(v.getContext());
+                                                        textPrice.setText("" + games.get(i).PRICE + "€");
+                                                        textPrice.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                        m_ll.addView(textPrice);
+
+                                                        TextView textPriceSale = new TextView(v.getContext());
+                                                        textPriceSale.setText("" + games.get(i).SALE_PRICE + "€");
+                                                        textPriceSale.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                        textPriceSale.setTextColor(Color.RED);
+                                                        m_ll.addView(textPriceSale);
+                                                }
+                                                else{
+                                                        TextView textPrice = new TextView(v.getContext());
+                                                        textPrice.setText("" + games.get(i).PRICE + "€");
+                                                        textPrice.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                        m_ll.addView(textPrice);
+                                                }
+
+                                                TextView textDate = new TextView(v.getContext());
+                                                textDate.setText("" + games.get(i).DATE);
+                                                textDate.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                                                m_ll.addView(textDate);
+
+                                                /*
+                                                TextView text = new TextView(v.getContext());
+                                                text.setText("");
+                                                m_ll.addView(text);
+                                                //games.get(i).IMAGE + ", DATE-> " + games.get(i).DATE + ", SALE-> " + games.get(i).SALE + ", SALE_PRICE-> " + games.get(i).SALE_PRICE + ", XBOX-> " + games.get(i).XBOX + ", PS-> " + games.get(i).PS
+                                                */
+                                        }
+                                }
+                                bd.close();
+                        }
+                });
         }
 }
         /*
-        Button boton6 = findViewById(R.id.boton6);
+        Button botonDelete = findViewById(R.id.boton6);
 
-        boton6.setOnClickListener {
+        botonDelete.setOnClickListener {
         val admin = gamesDB(this, "administracion", null, version)
         val bd = admin.writableDatabase
         val fila = bd.execSQL("DROP TABLE Game")
         bd.close()
         }
         }*/
+
+

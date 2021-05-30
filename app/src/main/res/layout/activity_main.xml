@@ -126,6 +126,24 @@
                 android:layout_height="wrap_content"
                 android:text="Ver todos" />
 
+            <Button
+                android:id="@+id/boton6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filtro XBox" />
+
+            <Button
+                android:id="@+id/boton7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filtro PS" />
+
+            <Button
+                android:id="@+id/boton8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filtro oferta ordenado" />
+
             <LinearLayout
                 android:id="@+id/gamesLayout"
                 android:layout_width="match_parent"
