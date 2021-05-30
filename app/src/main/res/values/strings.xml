@@ -15,5 +15,10 @@
     <string name="menu_location">¿Dónde estamos?</string>
     <string name="menu_contacto">Contacto</string>
     <string name="menu_carro">Carro de la compra</string>
+    <string name="novedades">Novedades</string>
+    <string name="ps4">PS4</string>
+    <string name="ofertas">Ofertas</string>
+    <string name="xbox">Xbox</string>
+    <string name="logo">logo</string>
 
 </resources>
