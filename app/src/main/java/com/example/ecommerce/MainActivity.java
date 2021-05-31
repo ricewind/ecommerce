@@ -1,18 +1,15 @@
 package com.example.ecommerce;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
-import com.example.ecommerce.databinding.FragmentCarroBinding;
+import com.example.ecommerce.controller.GameController;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -71,9 +68,15 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.action_settings:
                 // TODO pasar a pantalla de carrito
+                switchActivities();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void switchActivities() {
+        Intent switchActivityIntent = new Intent(this, GameController.class);
+        startActivity(switchActivityIntent);
     }
 
     @Override

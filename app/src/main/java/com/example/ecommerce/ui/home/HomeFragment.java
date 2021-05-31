@@ -48,9 +48,9 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         mRecyclerView = root.findViewById(R.id.my_list);
-
-        firstList = Utilities.populateFirstList();
-        secondList = Utilities.populateSecondList();
+        Utilities u = new Utilities(getContext());
+        firstList = u.populateFirstList();
+        secondList = u.populateSecondList();
 
         // Initialize the list
         mDynamicListAdapter = new DynamicListAdapter();

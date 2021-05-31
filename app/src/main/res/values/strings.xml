@@ -20,5 +20,34 @@
     <string name="ofertas">Ofertas</string>
     <string name="xbox">Xbox</string>
     <string name="logo">logo</string>
+    <string name="title_activity_polla">polla</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="db_activity">db-setup</string>
+    <string name="id_hint">ID</string>
+    <string name="title_hint">Título</string>
+    <string name="description_hint">Descripción</string>
+    <string name="precio_hint">Precio</string>
+    <string name="src_hint">Ruta de la imagen</string>
+    <string name="fecha_hint">Fecha de estreno</string>
+    <string name="sale_hint">sale</string>
+    <string name="sale_price_hint">sale_price</string>
+    <string name="category_xbox_hint">categoría xbox</string>
+    <string name="category_ps4_hint">categoría ps4</string>
+    <string name="alta_text">Alta</string>
+    <string name="consulta_por_id_text">Consulta por ID</string>
+    <string name="consulta_por_titulo_text">Consulta por título</string>
+    <string name="baja_por_id_text">Baja por ID</string>
+    <string name="ver_todos_text">Ver todos</string>
+    <string name="filtro_xbox_text">Filtro XBox</string>
+    <string name="filtro_ps4_text">Filtro PS4</string>
+    <string name="ofertas_text">Ofertas</string>
+    <string name="novedades_text">Novedades</string>
 
 </resources>
