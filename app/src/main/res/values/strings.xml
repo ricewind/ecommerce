@@ -20,7 +20,7 @@
     <string name="ofertas">Ofertas</string>
     <string name="xbox">Xbox</string>
     <string name="logo">logo</string>
-<<<<<<< Updated upstream
+
     <string name="title_activity_polla">polla</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -50,8 +50,6 @@
     <string name="filtro_ps4_text">Filtro PS4</string>
     <string name="ofertas_text">Ofertas</string>
     <string name="novedades_text">Novedades</string>
-=======
     <string name="title_activity_maps">Map</string>
->>>>>>> Stashed changes
 
 </resources>
