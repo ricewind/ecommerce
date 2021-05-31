@@ -43,11 +43,10 @@ public class XboxFragment extends Fragment {
         View root = binding.getRoot();
 
         createGames(root);
-        final TextView textView = binding.textXbox;
         xboxViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+
             }
         });
         return root;

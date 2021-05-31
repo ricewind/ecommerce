@@ -43,11 +43,10 @@ public class Ps4Fragment extends Fragment {
         View root = binding.getRoot();
 
         createGames(root);
-        final TextView textView = binding.textPs4;
         ps4ViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+
             }
         });
         return root;

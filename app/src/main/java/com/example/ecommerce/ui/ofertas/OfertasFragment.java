@@ -46,11 +46,10 @@ public class OfertasFragment extends Fragment {
 
         createGames(root);
 
-        final TextView textView = binding.textOfertas;
         ofertasViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+
             }
         });
 
