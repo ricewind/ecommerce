@@ -51,23 +51,18 @@ public class HomeFragment extends Fragment {
 
         firstList = Utilities.populateFirstList();
         secondList = Utilities.populateSecondList();
-        thirdList = Utilities.populateThirdList();
-        fourthList = Utilities.populateFourthList();
 
         // Initialize the list
         mDynamicListAdapter = new DynamicListAdapter();
         mDynamicListAdapter.setFirstList(firstList);
         mDynamicListAdapter.setSecondList(secondList);
-        mDynamicListAdapter.setThirdList(thirdList);
-        mDynamicListAdapter.setFourthList(fourthList);
 
-        try {
-            mLayoutManager = new LinearLayoutManager(root.getContext());
-            mRecyclerView.setLayoutManager(mLayoutManager);
-            mRecyclerView.setAdapter(mDynamicListAdapter);
-        }catch (NullPointerException e){
-            System.out.println("NullPointerException thrown!");
-        }
+
+        mLayoutManager = new LinearLayoutManager(root.getContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mDynamicListAdapter);
+
+
 
         return root;
     }

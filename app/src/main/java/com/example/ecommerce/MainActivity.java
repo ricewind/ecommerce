@@ -1,11 +1,18 @@
 package com.example.ecommerce;
 
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.ecommerce.databinding.FragmentCarroBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -18,6 +25,7 @@ import com.example.ecommerce.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
+    String TAG = "Polla";
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -55,6 +63,17 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.action_settings:
+                // TODO pasar a pantalla de carrito
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
