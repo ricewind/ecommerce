@@ -1,43 +1,42 @@
 package com.example.ecommerce.ui.location;
 
+import android.content.RestrictionsManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
+
 
 import com.example.ecommerce.R;
 import com.example.ecommerce.databinding.FragmentLocationBinding;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-public class LocationFragment extends Fragment{
 
-    private LocationViewModel locationViewModel;
+
+
+public class LocationFragment extends Fragment implements  OnMapReadyCallback {
+
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private FragmentLocationBinding binding;
+    private GoogleMap mMap;
+    private boolean permissionDenied = false;
+    private RestrictionsManager PermissionUtils;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
 
-        locationViewModel = new ViewModelProvider(this).get(LocationViewModel.class);
-
-        binding = FragmentLocationBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        final TextView textView = binding.textLocation;
-        locationViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-
-        return root;
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView =  inflater.inflate(R.layout.fragment_location, container, false);
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+        return rootView;
     }
 
     @Override
@@ -45,4 +44,17 @@ public class LocationFragment extends Fragment{
         super.onDestroyView();
         binding = null;
     }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+        LatLng company = new LatLng(40.472960,  -3.690922);
+        mMap.addMarker(new MarkerOptions()
+                .position(company)
+                .title("Marker in Madrid"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(company));
+    }
 }
+
