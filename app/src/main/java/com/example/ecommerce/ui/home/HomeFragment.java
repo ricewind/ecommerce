@@ -31,14 +31,14 @@ public class HomeFragment extends Fragment {
 
     private ArrayList<ListObject> firstList = new ArrayList<>();
     private ArrayList<ListObject> secondList = new ArrayList<>();
-    private ArrayList<ListObject> thirdList = new ArrayList<>();
-    private ArrayList<ListObject> fourthList = new ArrayList<>();
 
 
     private RecyclerView mRecyclerView;
+
     private LinearLayoutManager mLayoutManager;
 
     private DynamicListAdapter mDynamicListAdapter;
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,12 +48,14 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         mRecyclerView = root.findViewById(R.id.my_list);
+
         Utilities u = new Utilities(getContext());
         firstList = u.populateFirstList();
         secondList = u.populateSecondList();
 
+
         // Initialize the list
-        mDynamicListAdapter = new DynamicListAdapter();
+        mDynamicListAdapter = new DynamicListAdapter(false);
         mDynamicListAdapter.setFirstList(firstList);
         mDynamicListAdapter.setSecondList(secondList);
 
@@ -61,6 +63,9 @@ public class HomeFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(root.getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mDynamicListAdapter);
+
+
+
 
 
 

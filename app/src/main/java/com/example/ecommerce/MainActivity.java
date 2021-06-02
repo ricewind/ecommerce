@@ -22,7 +22,6 @@ import com.example.ecommerce.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    String TAG = "Polla";
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -37,8 +36,7 @@ public class MainActivity extends AppCompatActivity {
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                switchActivities();
             }
         });
         DrawerLayout drawer = binding.drawerLayout;
@@ -68,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.action_settings:
                 // TODO pasar a pantalla de carrito
-                switchActivities();
                 break;
         }
         return super.onOptionsItemSelected(item);

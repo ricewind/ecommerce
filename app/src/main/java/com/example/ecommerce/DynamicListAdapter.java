@@ -19,8 +19,10 @@ public class DynamicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     private ArrayList<ListObject> firstList = new ArrayList<ListObject>();
     private ArrayList<ListObject> secondList = new ArrayList<ListObject>();
+    static boolean flag;
 
-    public DynamicListAdapter() {
+    public DynamicListAdapter(boolean flag) {
+        this.flag = flag;
     }
 
     public void setFirstList(ArrayList<ListObject> firstList) {
@@ -53,7 +55,6 @@ public class DynamicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             // Get the view of the elements of second list
             mTextDescription2 = (TextView) itemView.findViewById(R.id.description2);
             mListItemTitle2 = (TextView) itemView.findViewById(R.id.title2);
-
 
         }
 
@@ -98,6 +99,7 @@ public class DynamicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private class FirstListHeaderViewHolder extends ViewHolder {
         public FirstListHeaderViewHolder(View itemView) {
             super(itemView);
+
         }
     }
 
@@ -110,6 +112,7 @@ public class DynamicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private class SecondListHeaderViewHolder extends ViewHolder {
         public SecondListHeaderViewHolder(View itemView) {
             super(itemView);
+
         }
     }
 

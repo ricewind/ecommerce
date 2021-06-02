@@ -71,6 +71,49 @@ public class Utilities {
     }
 
 
+    public static ArrayList<ListObject> populateThirdList() {
+        ArrayList<ListObject> mThirdList = new ArrayList<>();
+        List<Game> ps4 = getPS4();
+
+
+        for (int i = 0; i < 3; i++) {
+            ListObject mListObject;
+
+            if(i < ps4.size()){
+                if(ps4.get(i).SALE_PRICE != 0)
+                    mListObject = new ListObject(ps4.get(i).SALE_PRICE + "€", ps4.get(i).TITLE);
+                else
+                    mListObject = new ListObject(ps4.get(i).PRICE + "€", ps4.get(i).TITLE);
+
+                mThirdList.add(mListObject);
+            }
+        }
+
+        return mThirdList;
+    }
+
+    public static ArrayList<ListObject> populateFourthList() {
+        ArrayList<ListObject> mFourthList = new ArrayList<>();
+
+        List<Game> xbox = getXbox();
+
+
+        for (int i = 0; i < 3; i++) {
+            ListObject mListObject;
+
+            if(i < xbox.size()){
+                if(xbox.get(i).SALE_PRICE != 0)
+                    mListObject = new ListObject(xbox.get(i).SALE_PRICE + "€", xbox.get(i).TITLE);
+                else
+                    mListObject = new ListObject(xbox.get(i).PRICE + "€", xbox.get(i).TITLE);
+
+                mFourthList.add(mListObject);
+            }
+        }
+
+        return mFourthList;
+    }
+
     public static List<Game> getNovedades() {
         GamesDB admin = new GamesDB(context, version);
         SQLiteDatabase bd = admin.getReadableDatabase();
@@ -113,6 +156,45 @@ public class Utilities {
         return games;
     }
 
+    public static List<Game> getPS4() {
+        GamesDB admin = new GamesDB(context, version);
+        SQLiteDatabase bd = admin.getReadableDatabase();
+        List<Game> games = new ArrayList<Game>();
+
+        Cursor fila = bd.rawQuery("select * from Game where PS = 1", null);
+        if (fila.moveToFirst()) {
+            do {
+                try {
+                    games.add(new Game(fila.getInt(0), fila.getString(1), fila.getString(2), fila.getFloat(3), fila.getString(4), formatter1.parse(fila.getString(5)), fila.getInt(6), fila.getFloat(7), fila.getInt(8), fila.getInt(9)));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            } while (fila.moveToNext());
+        }
+
+        bd.close();
+        return games;
+    }
+
+    public static List<Game> getXbox() {
+        GamesDB admin = new GamesDB(context, version);
+        SQLiteDatabase bd = admin.getReadableDatabase();
+        Cursor fila = bd.rawQuery("select * from Game where XBOX = 1", null);
+        List<Game> games = new ArrayList<Game>();
+
+        if (fila.moveToFirst()) {
+            do {
+                try {
+                    games.add(new Game(fila.getInt(0), fila.getString(1), fila.getString(2), fila.getFloat(3), fila.getString(4), formatter1.parse(fila.getString(5)), fila.getInt(6), fila.getFloat(7), fila.getInt(8), fila.getInt(9)));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            } while (fila.moveToNext());
+
+        }
+        bd.close();
+        return games;
+    }
 
 
 

@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,8 +19,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.ecommerce.ListObject;
 import com.example.ecommerce.R;
 import com.example.ecommerce.databinding.FragmentPs4Binding;
+import com.example.ecommerce.model.Carro;
 import com.example.ecommerce.model.Game;
 import com.example.ecommerce.model.GamesDB;
 
@@ -114,6 +117,11 @@ public class Ps4Fragment extends Fragment {
                 textDate.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
                 m_ll.addView(textDate);
 
+                // TODO BOTON DE COMPRA O DETALLE
+
+                Button mButton = new Button(v.getContext());
+                mButton.setId(games.get(i).ID);
+                mButton.setText("Comprar");
             }
         }
         bd.close();

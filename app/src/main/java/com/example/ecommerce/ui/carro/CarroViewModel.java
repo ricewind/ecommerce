@@ -10,7 +10,7 @@ public class CarroViewModel extends ViewModel {
 
     public CarroViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Carro");
+        mText.setValue("Tu pedido:");
     }
 
     public LiveData<String> getText() {
