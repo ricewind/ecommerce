@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -88,10 +89,16 @@ public class Ps4Fragment extends Fragment implements MyRecyclerViewAdapter.ItemC
 
         Gson gson = new Gson();
         String gameDataParced = gson.toJson(selectedGame);
-        Intent intent = new Intent(getContext(), GameDetail.class);
-        intent.putExtra("game", gameDataParced);
-        startActivity(intent);
 
+        Bundle bundle = new Bundle();
+        bundle.putString("game", gameDataParced);
+
+        Fragment newFragment = new GameDetail();
+        newFragment.setArguments(bundle);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment_content_main, newFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     @Override

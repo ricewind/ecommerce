@@ -1,5 +1,6 @@
 package com.example.ecommerce.ui.ofertas;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -11,17 +12,20 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ecommerce.GameDetail;
 import com.example.ecommerce.MyRecyclerViewAdapter;
 import com.example.ecommerce.R;
 import com.example.ecommerce.databinding.FragmentOfertasBinding;
 import com.example.ecommerce.model.Game;
 import com.example.ecommerce.model.GamesDB;
+import com.google.gson.Gson;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,6 +38,7 @@ public class OfertasFragment extends Fragment implements MyRecyclerViewAdapter.I
     private OfertasViewModel OfertasViewModel;
     private FragmentOfertasBinding binding;
     MyRecyclerViewAdapter adapter;
+    List <Game> games;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,7 +47,7 @@ public class OfertasFragment extends Fragment implements MyRecyclerViewAdapter.I
         binding = FragmentOfertasBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        List <Game> games = createGames(root);
+        games = createGames(root);
         OfertasViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -69,6 +74,25 @@ public class OfertasFragment extends Fragment implements MyRecyclerViewAdapter.I
     @Override
     public void onItemClick(View view, int position) {
         System.out.println(position);
+
+        Game selectedGame = null;
+        for (Game a : games) {
+            if (a.ID == adapter.getItem(position).ID) {
+                selectedGame = a;
+            }
+        }
+
+        Gson gson = new Gson();
+        String gameDataParced = gson.toJson(selectedGame);
+        Bundle bundle = new Bundle();
+        bundle.putString("game", gameDataParced);
+
+        Fragment newFragment = new GameDetail();
+        newFragment.setArguments(bundle);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment_content_main, newFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     @Override
