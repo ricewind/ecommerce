@@ -69,6 +69,11 @@ public class GameDetail extends Fragment {
         textDesc.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         m_ll.addView(textDesc);
 
+        TextView textDate = new TextView(rootView.getContext());
+        textDate.setText("" + game.DATE);
+        textDate.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        m_ll.addView(textDate);
+
             if (game.SALE == 1){
                 TextView textPrice = new TextView(rootView.getContext());
                 textPrice.setText("" + game.PRICE + "€");
@@ -87,10 +92,5 @@ public class GameDetail extends Fragment {
                 textPrice.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
                 m_ll.addView(textPrice);
             }
-
-            TextView textDate = new TextView(rootView.getContext());
-            textDate.setText("" + game.DATE);
-            textDate.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-            m_ll.addView(textDate);
         }
 }
