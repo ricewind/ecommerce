@@ -1,5 +1,6 @@
 package com.example.ecommerce.ui.ps4;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -22,11 +23,13 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ecommerce.GameDetail;
 import com.example.ecommerce.MyRecyclerViewAdapter;
 import com.example.ecommerce.R;
 import com.example.ecommerce.databinding.FragmentPs4Binding;
 import com.example.ecommerce.model.Game;
 import com.example.ecommerce.model.GamesDB;
+import com.google.gson.Gson;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,6 +42,7 @@ public class Ps4Fragment extends Fragment implements MyRecyclerViewAdapter.ItemC
     private Ps4ViewModel ps4ViewModel;
     private FragmentPs4Binding binding;
     MyRecyclerViewAdapter adapter;
+    List <Game> games;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,7 +51,7 @@ public class Ps4Fragment extends Fragment implements MyRecyclerViewAdapter.ItemC
         binding = FragmentPs4Binding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        List <Game> games = createGames(root);
+        games = createGames(root);
         ps4ViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -74,6 +78,20 @@ public class Ps4Fragment extends Fragment implements MyRecyclerViewAdapter.ItemC
     @Override
     public void onItemClick(View view, int position) {
         System.out.println(position);
+
+        Game selectedGame = null;
+        for (Game a : games) {
+            if (a.ID == adapter.getItem(position).ID) {
+                selectedGame = a;
+            }
+        }
+
+        Gson gson = new Gson();
+        String gameDataParced = gson.toJson(selectedGame);
+        Intent intent = new Intent(getContext(), GameDetail.class);
+        intent.putExtra("game", gameDataParced);
+        startActivity(intent);
+
     }
 
     @Override

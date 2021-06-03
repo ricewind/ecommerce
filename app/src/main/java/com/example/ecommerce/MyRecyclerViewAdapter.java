@@ -96,7 +96,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     // convenience method for getting data at click position
-    Game getItem(int id) {
+    public Game getItem(int id) {
         return mData.get(id);
     }
 
