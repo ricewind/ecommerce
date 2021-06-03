@@ -77,7 +77,7 @@ public class OfertasFragment extends Fragment implements MyRecyclerViewAdapter.I
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
+    }      //ddd
 
     public List<Game> createGames(View v) {
         GamesDB admin = new GamesDB(v.getContext(), version);
