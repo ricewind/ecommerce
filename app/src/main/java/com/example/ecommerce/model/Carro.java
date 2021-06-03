@@ -28,12 +28,14 @@ public class Carro {
     public float getTotal(){
             float total = 0;
             for(int i = 0; i < this.carroList.size(); i++){
-                if(carroList.get(i).SALE != 0) {
-                    total = total + carroList.get(i).PRICE;
-                }else{
+                if(carroList.get(i).SALE == 1) {
                     total = total + carroList.get(i).SALE_PRICE;
+                }else{
+                    total = total + carroList.get(i).PRICE;
                 }
+                System.out.println("Total en bucle" + total);
             }
+            System.out.println("Total antes de Return" + total);
             return total;
     }
 

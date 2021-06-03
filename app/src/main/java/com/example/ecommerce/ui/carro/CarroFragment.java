@@ -41,7 +41,7 @@ public class CarroFragment extends Fragment {
         binding = FragmentCarroBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        totalTextView = binding.textCarro;
+        totalTextView = root.findViewById(R.id.text_carro);
 
         carro = Carro.getClase();
         ArrayList<Game> carroList = carro.getLista();
@@ -78,22 +78,17 @@ public class CarroFragment extends Fragment {
             textDesc.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
             m_ll.addView(textDesc);
 
-            if (games.get(i).SALE == 1) {
-                TextView textPrice = new TextView(v.getContext());
-                textPrice.setText("" + games.get(i).SALE_PRICE + "€");
-                textPrice.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-                m_ll.addView(textPrice);
+            TextView textPrice = new TextView(v.getContext());
+            textPrice.setText("" + games.get(i).PRICE + "€");
+            textPrice.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+            m_ll.addView(textPrice);
 
+            if (games.get(i).SALE == 1) {
                 TextView textPriceSale = new TextView(v.getContext());
                 textPriceSale.setText("" + games.get(i).SALE_PRICE + "€");
                 textPriceSale.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
                 textPriceSale.setTextColor(Color.RED);
                 m_ll.addView(textPriceSale);
-            } else {
-                TextView textPrice = new TextView(v.getContext());
-                textPrice.setText("" + games.get(i).PRICE + "€");
-                textPrice.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-                m_ll.addView(textPrice);
             }
 
             TextView textDate = new TextView(v.getContext());
@@ -103,7 +98,7 @@ public class CarroFragment extends Fragment {
         }
         float precio = 0;
         precio = carro.getTotal();
-        totalTextView.setText(Float.toString(precio));
-        m_ll.addView(totalTextView);
+        System.out.println(precio);
+        totalTextView.setText("Total a pagar: " + precio +"€");
     }
 }

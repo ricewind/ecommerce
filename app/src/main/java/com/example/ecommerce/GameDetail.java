@@ -1,22 +1,13 @@
 package com.example.ecommerce;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,13 +15,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.ecommerce.controller.GameController;
-import com.example.ecommerce.databinding.ActivityMainBinding;
 import com.example.ecommerce.databinding.FragmentContactoBinding;
 import com.example.ecommerce.model.Carro;
 import com.example.ecommerce.model.Game;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 
 public class GameDetail extends Fragment {
@@ -42,7 +29,7 @@ public class GameDetail extends Fragment {
         String strtext = getArguments().getString("game");
         rootView =  inflater.inflate(R.layout.activity_game_detail, container, false);
 
-        mButton = rootView.findViewById(R.id.comprar);
+        mButton = rootView.findViewById(R.id.pagar);
 
         Gson gson = new Gson();
         String gameDataParced = strtext;
