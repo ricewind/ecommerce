@@ -1,6 +1,7 @@
 package com.example.ecommerce;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ecommerce.model.Game;
 
+import java.util.Date;
 import java.util.List;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
@@ -43,6 +45,14 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
         float price = mData.get(position).PRICE;
         holder.myTextPrice.setText("" + price);
+        if (mData.get(position).SALE == 1){
+            float salePrice = mData.get(position).SALE_PRICE;
+            holder.myTextSalePrice.setText("" + salePrice);
+            holder.myTextSalePrice.setTextColor(Color.RED);
+        }
+
+        Date date = mData.get(position).DATE;
+        holder.myTextDate.setText("" + date);
 
         String image = mData.get(position).IMAGE;
         int draw = holder.itemView.getResources().getIdentifier(image, "drawable",holder.itemView.getContext().getPackageName());
@@ -63,6 +73,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         TextView myTextTitle;
         TextView myTextDescription;
         TextView myTextPrice;
+        TextView myTextSalePrice;
         TextView myTextDate;
 
 
@@ -74,6 +85,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             myImage = itemView.findViewById(R.id.image);
             myTextDescription = itemView.findViewById(R.id.description);
             myTextPrice = itemView.findViewById(R.id.price);
+            myTextSalePrice = itemView.findViewById(R.id.salePrice);
             myTextDate = itemView.findViewById(R.id.date);
         }
 
