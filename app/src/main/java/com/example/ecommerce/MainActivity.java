@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.action_settings:
-                // TODO pasar a pantalla de carrito
+
                 break;
         }
         return super.onOptionsItemSelected(item);
