@@ -1,8 +1,7 @@
-package com.example.ecommerce.ui.ps4;
+package com.example.ecommerce.ui.ofertas;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +22,6 @@ import com.example.ecommerce.R;
 import com.example.ecommerce.databinding.FragmentOfertasBinding;
 import com.example.ecommerce.model.Game;
 import com.example.ecommerce.model.GamesDB;
-import com.example.ecommerce.ui.ofertas.OfertasViewModel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,7 +31,7 @@ import java.util.List;
 public class OfertasFragment extends Fragment implements MyRecyclerViewAdapter.ItemClickListener{
     static int version = 2;
     SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
-    private com.example.ecommerce.ui.ofertas.OfertasViewModel OfertasViewModel;
+    private OfertasViewModel OfertasViewModel;
     private FragmentOfertasBinding binding;
     MyRecyclerViewAdapter adapter;
 

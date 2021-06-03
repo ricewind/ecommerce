@@ -32,9 +32,6 @@ import java.util.List;
 
 
 
-
-
-
 public class NovedadesFragment extends Fragment implements MyRecyclerViewAdapter.ItemClickListener{
     static int version = 2;
     SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
