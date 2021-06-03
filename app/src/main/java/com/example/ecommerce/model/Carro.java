@@ -6,7 +6,7 @@ public class Carro {
         public static Carro carro = null;
         ArrayList<Game> carroList = new ArrayList<>();
 
-        private Carro(){
+        public Carro(){
 
         }
 

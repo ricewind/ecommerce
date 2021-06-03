@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 import com.example.ecommerce.controller.GameController;
 import com.example.ecommerce.databinding.ActivityMainBinding;
 import com.example.ecommerce.databinding.FragmentContactoBinding;
+import com.example.ecommerce.model.Carro;
 import com.example.ecommerce.model.Game;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -33,16 +35,32 @@ import com.google.gson.Gson;
 
 public class GameDetail extends Fragment {
     Game game;
+    Button mButton;
     private FragmentContactoBinding binding;
     View rootView;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         String strtext = getArguments().getString("game");
-
         rootView =  inflater.inflate(R.layout.activity_game_detail, container, false);
+
+        mButton = rootView.findViewById(R.id.comprar);
+
         Gson gson = new Gson();
         String gameDataParced = strtext;
         this.game = gson.fromJson(gameDataParced,Game.class);
         createView();
+
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Carro carrito = Carro.getClase();
+                carrito.addToCarro(game);
+
+                Intent intent = new Intent(getActivity().getBaseContext(),MainActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+
         return rootView;
     }
 
